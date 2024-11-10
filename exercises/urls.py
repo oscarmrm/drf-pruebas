@@ -4,7 +4,7 @@ from exercises.api.exercises.views import ExerciseDoneAPIView, ExercisesAPIView
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r"done", ExerciseDoneAPIView, basename='exercise-done')
+router.register(r"exercises/done", ExerciseDoneAPIView, basename='exercise-done')
 router.register(r"muscles", MusclesAPIView, basename='msucles')
 router.register(r"exercises", ExercisesAPIView, basename='exercises')
 
