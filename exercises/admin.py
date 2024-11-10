@@ -1,6 +1,7 @@
 from django.contrib import admin
 from exercises.models.exercises import Exercise,Exercise_Done,Muscle_Exercise
 from exercises.models.muscles import Muscle
+from exercises.models.routines import Routine, Routine_exercises
 
 # Register your models here.
 
@@ -19,4 +20,11 @@ class Admin_Exercise_Done(admin.ModelAdmin):
 
 admin.site.register(Exercise_Done, Admin_Exercise_Done)
 
+
+class routine_exercise_admin(admin.TabularInline):
+    model = Routine_exercises
+    extra = 1
+class routine_admin(admin.ModelAdmin):
+    inlines = [routine_exercise_admin]
+admin.site.register(Routine, routine_admin)
 
