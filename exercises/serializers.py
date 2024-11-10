@@ -21,7 +21,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
     involved_muscles = serializers.SerializerMethodField()
     class Meta:
         model = Exercise
-        fields = ['id', 'name', 'description', 'involved_muscles']
+        exclude = ('muscles',)
 
     def get_involved_muscles(self, obj): 
         muscle_exercises = Muscle_Exercise.objects.filter(exercises=obj)
