@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Exercise_Done, Muscle, Muscle_Exercise, Exercise
+from exercises.models.exercises import Exercise,Exercise_Done,Muscle_Exercise
 
 class ExerciseDoneSerializer(serializers.ModelSerializer):
     exercise_name = serializers.SerializerMethodField()
@@ -11,11 +11,7 @@ class ExerciseDoneSerializer(serializers.ModelSerializer):
     def get_exercise_name(self, obj): 
         return obj.id_exercise.name
     
-
-class MusclesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Muscle
-        fields = '__all__'
+        
 
 class ExerciseSerializer(serializers.ModelSerializer):
     involved_muscles = serializers.SerializerMethodField()
@@ -27,7 +23,6 @@ class ExerciseSerializer(serializers.ModelSerializer):
         muscle_exercises = Muscle_Exercise.objects.filter(exercises=obj)
         return MuscleExerciseSerializer(muscle_exercises, many = True).data
     
-
 class MuscleExerciseSerializer(serializers.ModelSerializer):
     muscle_name = serializers.CharField(source='muscles.name')  # Accede al campo 'name' de la FK 'muscles'
 
