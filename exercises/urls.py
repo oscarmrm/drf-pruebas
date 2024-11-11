@@ -18,4 +18,4 @@ router.register(r"routines", RoutinesAPIView, basename='routines')
 
 urlpatterns = [
     path('', include(router.urls))
-]
+] 

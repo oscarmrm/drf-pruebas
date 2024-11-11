@@ -1,9 +1,11 @@
 from django.db import models
 from .muscles import Muscle
+from django.utils.html import format_html
 
 class Exercise(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
+    image = models.ImageField(upload_to="exercises/", null=True, blank=True)
     muscles = models.ManyToManyField(Muscle, through='Muscle_Exercise')
     
     def __str__(self):
